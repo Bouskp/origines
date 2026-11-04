@@ -1,0 +1,385 @@
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:is(.dark *));
+
+/* --------------------------------------------------------------------------
+   1. PRIMITIVES DE MARQUE
+   -------------------------------------------------------------------------- */
+:root {
+  /* Neutres chauds */
+  --ink: #111111;
+  --ink-soft: #2a2825;
+  --stone: #6b665d; /* texte secondaire (AA sur blanc et ivoire) */
+  --line: #ddd7ca; /* filets */
+  --ivory: #f4f1ea; /* surface secondaire (couleur du brief) */
+  --ivory-deep: #e9e3d6;
+  --paper: #ffffff;
+
+  /* Or : signature de la marque */
+  --gold: #a8874a; /* décor : filets, icônes, gros éléments */
+  --gold-text: #7a5f2c; /* texte or de petite taille (contraste AA) */
+  --gold-soft: #d9c8a3;
+
+  /* Accents par rubrique (usage discret : kicker, filet, pastille) */
+  --sec-culture: #7b3f2a; /* terre / brique */
+  --sec-style: #1f2a44; /* indigo */
+  --sec-beaute: #a4566a; /* rose bois */
+  --sec-voyages: #1f5c5a; /* lagon */
+  --sec-saveurs: #b8651b; /* épice */
+  --sec-art-de-vivre: #4a5a3c; /* olive */
+  --sec-personnalites: #111111;
+  --sec-guide: #a8874a;
+
+  /* ------------------------------------------------------------------------
+     2. TOKENS SÉMANTIQUES (noms attendus par shadcn)
+     ---------------------------------------------------------------------- */
+  --background: var(--paper);
+  --foreground: var(--ink);
+
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+
+  --primary: var(--ink);
+  --primary-foreground: var(--ivory);
+
+  --secondary: var(--ivory);
+  --secondary-foreground: var(--ink);
+
+  --muted: var(--ivory);
+  --muted-foreground: var(--stone);
+
+  --accent: var(--ivory-deep);
+  --accent-foreground: var(--ink);
+
+  --destructive: #9b2c2c;
+  --border: var(--line);
+  --input: var(--line);
+  --ring: var(--gold);
+
+  --highlight: var(--gold); /* alias éditorial */
+  --highlight-text: var(--gold-text);
+
+  --chart-1: var(--gold);
+  --chart-2: var(--sec-culture);
+  --chart-3: var(--sec-voyages);
+  --chart-4: var(--sec-style);
+  --chart-5: var(--sec-saveurs);
+
+  /* Forme : angles droits, esprit print */
+  --radius: 0rem;
+
+  /* Mise en page */
+  --container-max: 1440px;
+  --container-text: 42rem; /* colonne d'article ~ 680px */
+  --gutter: clamp(1rem, 0.5rem + 2vw, 2.5rem);
+  --section-gap: clamp(2.5rem, 1.5rem + 3.5vw, 5rem);
+
+  /* Ombres : quasi absentes, on préfère les filets */
+  --shadow-soft: 0 1px 0 0 rgb(17 17 17 / 0.04);
+  --shadow-lift: 0 18px 40px -22px rgb(17 17 17 / 0.28);
+
+  /* Mouvement */
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-base: 300ms;
+  --dur-slow: 700ms;
+}
+
+/* --------------------------------------------------------------------------
+   3. MODE SOMBRE (« édition du soir »)
+   -------------------------------------------------------------------------- */
+.dark {
+  --background: #0e0d0c;
+  --foreground: var(--ivory);
+
+  --card: #151413;
+  --card-foreground: var(--ivory);
+  --popover: #151413;
+  --popover-foreground: var(--ivory);
+
+  --primary: var(--ivory);
+  --primary-foreground: var(--ink);
+
+  --secondary: #1c1a18;
+  --secondary-foreground: var(--ivory);
+
+  --muted: #1c1a18;
+  --muted-foreground: #a9a296;
+
+  --accent: #26231f;
+  --accent-foreground: var(--ivory);
+
+  --border: #2e2a25;
+  --input: #2e2a25;
+  --ring: var(--gold);
+
+  --highlight: #c4a262;
+  --highlight-text: #c4a262;
+}
+
+/* --------------------------------------------------------------------------
+   4. EXPOSITION À TAILWIND (classes utilitaires)
+   -------------------------------------------------------------------------- */
+@theme inline {
+  /* Couleurs shadcn */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Couleurs de marque : bg-ink, text-gold, border-ivory… */
+  --color-ink: var(--ink);
+  --color-ivory: var(--ivory);
+  --color-ivory-deep: var(--ivory-deep);
+  --color-paper: var(--paper);
+  --color-gold: var(--gold);
+  --color-gold-text: var(--highlight-text);
+  --color-gold-soft: var(--gold-soft);
+  --color-stone: var(--stone);
+
+  /* Rubriques : text-sec-culture, bg-sec-voyages… */
+  --color-sec-culture: var(--sec-culture);
+  --color-sec-style: var(--sec-style);
+  --color-sec-beaute: var(--sec-beaute);
+  --color-sec-voyages: var(--sec-voyages);
+  --color-sec-saveurs: var(--sec-saveurs);
+  --color-sec-art-de-vivre: var(--sec-art-de-vivre);
+  --color-sec-personnalites: var(--sec-personnalites);
+  --color-sec-guide: var(--sec-guide);
+
+  /* Rayons (tous à 0 car --radius: 0) */
+  --radius-sm: var(--radius);
+  --radius-md: var(--radius);
+  --radius-lg: var(--radius);
+  --radius-xl: var(--radius);
+
+  /* Polices (variables posées par next/font, voir fonts.ts) */
+  --font-display: var(--font-playfair), 'Times New Roman', serif;
+  --font-serif: var(--font-garamond), Georgia, serif;
+  --font-sans: var(--font-jost), system-ui, sans-serif;
+
+  /* Échelle typographique fluide */
+  --text-kicker: 0.625rem; /* 10px, majuscules */
+  --text-kicker--line-height: 1;
+  --text-meta: 0.75rem; /* 12px, dates, auteurs */
+  --text-meta--line-height: 1.4;
+  --text-body: 1.5rem; /* 18px, texte d'article (Garamond) */
+  --text-body--line-height: 1.65;
+  --text-lead: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --text-lead--line-height: 1.45;
+  --text-h3: clamp(1.25rem, 1.1rem + 0.6vw, 1.5rem);
+  --text-h3--line-height: 1.2;
+  --text-h2: clamp(1.5rem, 1.2rem + 1.4vw, 2.25rem);
+  --text-h2--line-height: 1.1;
+  --text-h1: clamp(1.875rem, 1.3rem + 2.4vw, 3.25rem);
+  --text-h1--line-height: 1.04;
+  --text-display: clamp(2.25rem, 1.3rem + 4vw, 5rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.02em;
+
+  /* Approche (tracking) */
+  --tracking-kicker: 0.22em;
+  --tracking-nav: 0.2em;
+
+  /* Mouvement */
+  --ease-editorial: var(--ease-editorial);
+}
+
+/* --------------------------------------------------------------------------
+   5. BASE
+   -------------------------------------------------------------------------- */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: 'kern', 'liga';
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+  ::selection {
+    background: var(--gold-soft);
+    color: var(--ink);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   6. UTILITAIRES ÉDITORIAUX
+   -------------------------------------------------------------------------- */
+
+/* Étiquette de rubrique : <span class="kicker">Voyages</span> */
+@utility kicker {
+  font-family: var(--font-sans);
+  font-size: var(--text-kicker);
+  font-weight: 600;
+  letter-spacing: var(--tracking-kicker);
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--highlight-text);
+}
+
+/* Lien de navigation en capitales espacées */
+@utility nav-label {
+  font-family: var(--font-sans);
+  font-size: var(--text-kicker);
+  font-weight: 600;
+  letter-spacing: var(--tracking-nav);
+  text-transform: uppercase;
+}
+
+/* Masthead / titres monumentaux */
+@utility masthead {
+  font-family: var(--font-display);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Conteneur de page */
+@utility container-editorial {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Colonne de lecture */
+@utility container-text {
+  width: 100%;
+  max-width: var(--container-text);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+/* Espacement vertical entre grands blocs de la home */
+@utility section-gap {
+  padding-block: var(--section-gap);
+}
+
+/* Filet or fin sous un titre de section */
+@utility rule-gold {
+  height: 1px;
+  width: 3.5rem;
+  background: var(--gold);
+}
+
+/* Zoom lent sur les images de couverture (ajouter sur le parent .group) */
+@utility cover-zoom {
+  transition: transform var(--dur-slow) var(--ease-editorial);
+  &:is(.group:hover *) {
+    transform: scale(1.03);
+  }
+}
+
+/* Dégradé de lisibilité pour texte posé sur une image */
+@utility scrim {
+  background: linear-gradient(
+    to top,
+    rgb(17 17 17 / 0.72),
+    rgb(17 17 17 / 0) 65%
+  );
+}
+
+/* --------------------------------------------------------------------------
+   7. PROSE (corps des articles WordPress)
+   Usage : <div class="prose prose-origines" dangerouslySetInnerHTML=… />
+   -------------------------------------------------------------------------- */
+@layer components {
+  .prose-origines {
+    --tw-prose-body: var(--foreground);
+    --tw-prose-headings: var(--foreground);
+    --tw-prose-lead: var(--muted-foreground);
+    --tw-prose-links: var(--highlight-text);
+    --tw-prose-bold: var(--foreground);
+    --tw-prose-quotes: var(--foreground);
+    --tw-prose-quote-borders: var(--gold);
+    --tw-prose-captions: var(--muted-foreground);
+    --tw-prose-hr: var(--border);
+    --tw-prose-bullets: var(--gold);
+    --tw-prose-counters: var(--gold);
+
+    font-family: var(--font-serif);
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
+    max-width: var(--container-text);
+  }
+  .prose-origines h2,
+  .prose-origines h3 {
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+  .prose-origines blockquote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.5em;
+    line-height: 1.3;
+    border-left-width: 2px;
+    padding-left: 1.5rem;
+    quotes: none;
+  }
+  .prose-origines a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+  }
+  .prose-origines figure img {
+    width: 100%;
+    height: auto;
+  }
+  .prose-origines figcaption {
+    font-family: var(--font-sans);
+    font-size: var(--text-meta);
+    letter-spacing: 0.02em;
+  }
+  /* Lettrine sur le premier paragraphe */
+  .prose-origines.dropcap > p:first-of-type::first-letter {
+    float: left;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 4.5em;
+    line-height: 0.82;
+    padding: 0.08em 0.1em 0 0;
+    color: var(--foreground);
+  }
+}

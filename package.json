@@ -1,0 +1,47 @@
+{
+  "name": "origines",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@next/third-parties": "^16.3.2",
+    "@tailwindcss/postcss": "^4.3.0",
+    "@tailwindcss/typography": "^0.5.20",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "cn": "^0.4.0",
+    "embla-carousel-autoplay": "^8.6.0",
+    "embla-carousel-react": "^8.6.0",
+    "fast-xml-parser": "^5.10.1",
+    "html-entities": "^2.6.0",
+    "html-react-parser": "^6.1.7",
+    "lucide-react": "^1.52.0",
+    "next": "^16.2.6",
+    "postcss": "^8.5.15",
+    "query-string": "^9.3.1",
+    "radix-ui": "^1.5.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "shadcn": "^4.21.1",
+    "tailwind-merge": "^3.6.0",
+    "tailwindcss": "^4.3.0",
+    "tw-animate-css": "^1.4.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.8",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
